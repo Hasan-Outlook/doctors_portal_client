@@ -4,7 +4,7 @@ import MyAppointment from './MyAppointment';
 const Dashbord = () => {
     return (
         <section>
-            <MyAppointment></MyAppointment>
+            {/* <MyAppointment></MyAppointment> */}
         </section>
     );
 };

@@ -5,9 +5,16 @@ import Appointment from "../Pages/Appointment/Appointment";
 import AuthLayout from "../Layout/AuthLayout/AuthLayout";
 import Login from "../Pages/Auth/Login/Login";
 import Signup from "../Pages/Auth/Signup/Signup";
-import Dashbord from "../Pages/UserDashbord/Dashbord";
+// import Dashbord from "../Pages/UserDashbord/Dashbord";
 import PrivateRoute from "./PrivateRoute";
 import DashbordLayout from "../Layout/Dashbord/DashbordLayout";
+import MyAppointment from "../Pages/UserDashbord/MyAppointment";
+import Users from "../Pages/UserDashbord/Users";
+import AdminRoute from "./AdminRoute";
+import AddDoctors from "../Pages/UserDashbord/AddDoctors";
+import Doctors from "../Pages/UserDashbord/Doctors";
+import Payment from "../Pages/UserDashbord/Payment/Payment";
+import ErrorPage from "../Components/Shared/DisplayError/ErrorPage";
 
 
 
@@ -15,6 +22,7 @@ const router = createBrowserRouter([
     {
         path: '/',
         element:<Main></Main>,
+        errorElement: <ErrorPage></ErrorPage>,
         children: [
             {
                 path: '/',
@@ -50,10 +58,28 @@ const router = createBrowserRouter([
     {
         path: '/dashbord',
         element: <PrivateRoute><DashbordLayout></DashbordLayout></PrivateRoute>,
+        errorElement: <ErrorPage></ErrorPage>,
         children: [
             {
                 path: '/dashbord',
-                element: <Dashbord></Dashbord>
+                element: <MyAppointment></MyAppointment>
+            },
+            {
+                path: '/dashbord/users',
+                element: <AdminRoute><Users></Users></AdminRoute>
+            },
+            {
+                path: '/dashbord/addDoctors',
+                element: <AdminRoute><AddDoctors></AddDoctors></AdminRoute>
+            },
+            {
+                path: '/dashbord/doctors',
+                element: <AdminRoute><Doctors></Doctors></AdminRoute>
+            },
+            {
+                path: '/dashbord/payment/:id',
+                element: <AdminRoute><Payment></Payment></AdminRoute>,
+                loader: ({params}) => fetch(`http://localhost:5000/appointment/${params.id}`)
             },
            
         ]

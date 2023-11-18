@@ -15,13 +15,14 @@ const AvailableAppointment = ({ selectedDate }) => {
         queryFn: async () => {
             const res = await fetch(`http://localhost:5000/appointmentOption?date=${date}`)
             const data = await res.json();
+            
             return data;
         }
     });
 
-    // if(isLoading){
-    //     return <Loading></Loading>
-    // }
+    if(isLoading){
+        return <Loading></Loading>
+    }
 
     // useEffect(() => {
     //     fetch(`http://localhost:5000/appointmentOption`)

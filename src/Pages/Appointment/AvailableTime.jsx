@@ -1,7 +1,7 @@
 import React from 'react';
 
 const AvailableTime = ({ AvailableTime, setTreatment }) => {
-    const { name, slots } = AvailableTime
+    const { name, slots, price } = AvailableTime
     return (
         <div className="card shadow-xl">
             <div className="card-body">
@@ -15,8 +15,11 @@ const AvailableTime = ({ AvailableTime, setTreatment }) => {
                     <p>
                         {slots.length} {slots.length > 1 ? 'Spaces' : 'Space'} Available
                     </p>
+                    {
+                        <p>Price: ${price}</p>
+                    }
                 </div>
-                <label disabled={slots.length === 0} htmlFor="booking-modal" className="btn bg-gradient-to-r from-secondary to-primary text-white" onClick={ () => setTreatment(AvailableTime)}>Book Appointment</label>
+                <label disabled={slots.length === 0} htmlFor="myModal6" className="btn bg-gradient-to-r from-secondary to-primary text-white" onClick={ () => setTreatment(AvailableTime)}>Book Appointment</label>
             </div>
         </div>
     );

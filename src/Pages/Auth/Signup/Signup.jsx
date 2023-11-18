@@ -4,10 +4,11 @@ import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthProvider';
 import { toast } from 'react-hot-toast';
 import useToken from '../../../Hooks/useToken';
+import Loading from '../../../Components/Shared/Loadar/Loading';
 
 const Signup = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const { createUser, updateUser } = useContext(AuthContext);
+    const { createUser, updateUser, loding } = useContext(AuthContext);
     const [signupError, setSignupError] = useState('');
     const [userEmail, setUserEmail] = useState('');
     const [token] = useToken(userEmail);
